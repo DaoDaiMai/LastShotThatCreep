@@ -36,6 +36,7 @@ public class play extends BasicGameState{
 			throws SlickException {
 		if (END>0) {
 			scoreRender(g);
+			pointerRender(g);
 		} else {
 			lsthatcreep.hero[lsthatcreep.player[0].count].Draw(100,300);
 			lsthatcreep.hero[lsthatcreep.player[1].count].Draw(700,300);
@@ -45,6 +46,13 @@ public class play extends BasicGameState{
 
 
 	
+	private void pointerRender(Graphics g) throws SlickException {
+
+		g.drawString("p2",425+lsthatcreep.player[1].Key*70,500);
+		g.drawString("p1",425+lsthatcreep.player[0].Key*70-20,500);
+		
+	}
+
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
@@ -83,30 +91,46 @@ public class play extends BasicGameState{
 				finish = true;
 			}
 		}
-		if ((key == Input.KEY_A || key == Input.KEY_S) && lsthatcreep.player[0].CurrentDelay == 0) {
-			lsthatcreep.player[0].setDelay();
-			if(key == Input.KEY_A) {
-				lsthatcreep.creep[0].hit();
+		else {
+			swap(key);
+			if(lsthatcreep.player[0].CurrentDelay == 0) {
+				if(key == Input.KEY_S) {
+					lsthatcreep.creep[lsthatcreep.player[0].Key].hit(lsthatcreep.player[0].CurrentDmg);
+				}
 			}
-			if(key == Input.KEY_S) {
-				lsthatcreep.creep[1].hit();
-			}
-			if(lsthatcreep.creep[0].isDead() || lsthatcreep.creep[1].isDead()) {
-				lsthatcreep.player[0].Score++;
+			if(lsthatcreep.player[1].CurrentDelay == 0) {
+				if(key == Input.KEY_L) {
+					lsthatcreep.creep[lsthatcreep.player[1].Key].hit(lsthatcreep.player[1].CurrentDmg);
+				}
 			}
 		}
-		if ((key == Input.KEY_K || key == Input.KEY_L) && lsthatcreep.player[1].CurrentDelay == 0) {
-			lsthatcreep.player[1].setDelay();
-			if(key == Input.KEY_K) {
-				lsthatcreep.creep[0].hit();
+	}
+
+	private void swap(int key) {
+		if(key == Input.KEY_A){
+			lsthatcreep.player[0].Key--;
+			if(lsthatcreep.player[0].Key < 0) {
+				lsthatcreep.player[0].Key = 3;
 			}
-			if(key == Input.KEY_L) {
-				lsthatcreep.creep[1].hit();
+		}
+		if(key == Input.KEY_D){
+			lsthatcreep.player[0].Key++;
+			if(lsthatcreep.player[0].Key > 3) {
+				lsthatcreep.player[0].Key = 0;
 			}
-			if(lsthatcreep.creep[0].isDead() || lsthatcreep.creep[1].isDead()) {
-				lsthatcreep.player[1].Score++;
+		}
+		if(key == Input.KEY_K){
+			lsthatcreep.player[1].Key--;
+			if(lsthatcreep.player[1].Key < 0) {
+				lsthatcreep.player[1].Key = 3;
 			}
-		} 
+		}
+		if(key == Input.KEY_SEMICOLON){
+			lsthatcreep.player[1].Key++;
+			if(lsthatcreep.player[1].Key > 3) {
+				lsthatcreep.player[1].Key = 0;
+			}
+		}
 	}
 
 	private void CreepUpdate() {
@@ -147,7 +171,7 @@ public class play extends BasicGameState{
 		}
 		g.drawString("p1 hp :  " + lsthatcreep.player[0].CurrentHp, lsthatcreep.GAME_WIDTH/2, 20);
 		g.drawString("p2 hp :  " + lsthatcreep.player[1].CurrentHp, lsthatcreep.GAME_WIDTH/2+120, 20);
-		g.drawString("press SPACE to continue", lsthatcreep.GAME_WIDTH/2-80, lsthatcreep.GAME_HEIGHT-40);
+		g.drawString("press SPACE to continue", lsthatcreep.GAME_WIDTH/2-100, lsthatcreep.GAME_HEIGHT-40);
 		
 	}
 	private void scoreRender(Graphics g) {
@@ -161,8 +185,8 @@ public class play extends BasicGameState{
 		g.drawString("p2 delay " + lsthatcreep.player[1].delay, lsthatcreep.GAME_WIDTH/2+120, 60);
 		g.drawString("p1 delay : " + lsthatcreep.player[0].CurrentDelay, 200, 0);
 		g.drawString("p2 delay : " + lsthatcreep.player[1].CurrentDelay, 200, 20);
-		g.drawString(" A/K",lsthatcreep.GAME_WIDTH/2, 450);
-		g.drawString(" S/L", lsthatcreep.GAME_WIDTH/2 + 45, 450);
+		g.drawString("p1 "+lsthatcreep.player[0].Key,lsthatcreep.GAME_WIDTH/2-45l, 450);
+		g.drawString("p2 "+lsthatcreep.player[1].Key, lsthatcreep.GAME_WIDTH/2 + 45, 450);
 		for (int i = 0; i < CREEP_COUNT ; i++){
 			lsthatcreep.creep[i].render(i);
 		}

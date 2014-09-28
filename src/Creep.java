@@ -24,8 +24,8 @@ public class Creep {
 		}
 		
 	}
-	public void hit() {
-		hp-=50;
+	public void hit(int dmg) {
+		hp -= dmg;
 		if(hp<=0){
 			hp=0;
 		}
@@ -43,7 +43,7 @@ public class Creep {
 	}
 	public void render(int j) {
 		for(int i=0 ; i < hp/2 ; i++){
-			healthbar.draw(lsthatcreep.GAME_WIDTH/2 + j*50, 700-(lsthatcreep.GAME_HEIGHT/2 + i*2));
+			healthbar.draw(lsthatcreep.GAME_WIDTH/2 - 100 + j*70, (float) (800-(lsthatcreep.GAME_HEIGHT/2 + i*1.5)));
 		}
 	}
 	public void Spawn() {

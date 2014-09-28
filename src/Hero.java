@@ -60,11 +60,11 @@ public class Hero {
 			g.drawString("Damage "+damage, 100, 140);
 			g.drawString("Delay "+delay, 100, 160);
 		} else {
-			pic.draw(550,200);
-			g.drawString("Name "+name, 400, 100);
-			g.drawString("Hp "+hp, 400, 120);
-			g.drawString("Damage "+damage, 400, 140);
-			g.drawString("Delay "+delay, 400, 160);
+			pic.draw(650,200);
+			g.drawString("Name "+name, 500, 100);
+			g.drawString("Hp "+hp, 500, 120);
+			g.drawString("Damage "+damage, 500, 140);
+			g.drawString("Delay "+delay, 500, 160);
 		}
 		
 	}

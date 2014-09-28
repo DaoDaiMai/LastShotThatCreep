@@ -28,7 +28,7 @@ public class pickHero extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame sbg, Graphics g) throws SlickException {
 		lsthatcreep.hero[lsthatcreep.player[0].count].Render(0,g);
 		lsthatcreep.hero[lsthatcreep.player[1].count].Render(1,g);
-		
+		g.drawString("press SPACE to continue", lsthatcreep.GAME_WIDTH/2-100, lsthatcreep.GAME_HEIGHT-40);
 	}
 
 	@Override
