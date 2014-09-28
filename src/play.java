@@ -48,8 +48,8 @@ public class play extends BasicGameState{
 	
 	private void pointerRender(Graphics g) throws SlickException {
 
-		g.drawString("p2",425+lsthatcreep.player[1].Key*70,500);
-		g.drawString("p1",425+lsthatcreep.player[0].Key*70-20,500);
+		g.drawString("p2",420+lsthatcreep.player[1].Key*70,350);
+		g.drawString("p1",420+lsthatcreep.player[0].Key*70-20,350);
 		
 	}
 
@@ -185,8 +185,8 @@ public class play extends BasicGameState{
 		g.drawString("p2 delay " + lsthatcreep.player[1].delay, lsthatcreep.GAME_WIDTH/2+120, 60);
 		g.drawString("p1 delay : " + lsthatcreep.player[0].CurrentDelay, 200, 0);
 		g.drawString("p2 delay : " + lsthatcreep.player[1].CurrentDelay, 200, 20);
-		g.drawString("p1 "+lsthatcreep.player[0].Key,lsthatcreep.GAME_WIDTH/2-45l, 450);
-		g.drawString("p2 "+lsthatcreep.player[1].Key, lsthatcreep.GAME_WIDTH/2 + 45, 450);
+		//g.drawString("p1 "+lsthatcreep.player[0].Key,lsthatcreep.GAME_WIDTH/2-45l, 450);
+		//g.drawString("p2 "+lsthatcreep.player[1].Key, lsthatcreep.GAME_WIDTH/2 + 45, 450);
 		for (int i = 0; i < CREEP_COUNT ; i++){
 			lsthatcreep.creep[i].render(i);
 		}

@@ -2,10 +2,16 @@
 
 import java.util.Random;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+
+
 
 public class Creep {
+	private static SpriteSheet tt;
+	private static Animation anim;
 	public int hp;
 	private Image healthbar;
 	Random r = new Random();
@@ -13,6 +19,8 @@ public class Creep {
 	public Creep(int i) throws SlickException {
 		hp = i;
 		healthbar = new Image("res/healthbar.png");
+		tt = new SpriteSheet("res/ghost sprite sheet.png",175,175);
+		anim = new Animation(tt,70);
 	}
 	public int HP(){
 		return hp;
@@ -43,8 +51,9 @@ public class Creep {
 	}
 	public void render(int j) {
 		for(int i=0 ; i < hp/2 ; i++){
-			healthbar.draw(lsthatcreep.GAME_WIDTH/2 - 100 + j*70, (float) (800-(lsthatcreep.GAME_HEIGHT/2 + i*1.5)));
+			healthbar.draw(lsthatcreep.GAME_WIDTH/2 - 100 + j*70, (float) (700-(lsthatcreep.GAME_HEIGHT/2 + i*1.5)));
 		}
+		anim.draw(lsthatcreep.GAME_WIDTH/2,lsthatcreep.GAME_HEIGHT/2);
 	}
 	public void Spawn() {
 		hp = lsthatcreep.CREEP_HP;
