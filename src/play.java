@@ -10,7 +10,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class play extends BasicGameState{
 
-	private int CREEP_COUNT = 4;
+	private int CREEP_COUNT = 2;
 	private int END;
 	private boolean finish;
 	private int lvl;
@@ -101,6 +101,7 @@ public class play extends BasicGameState{
 			swap(key);
 			if(lsthatcreep.player[0].CurrentDelay == 0) {
 				if(key == Input.KEY_S) {
+					lsthatcreep.player[0].CurrentDelay = lsthatcreep.player[0].delay;
 					lsthatcreep.creep[lsthatcreep.player[0].Key].hit(lsthatcreep.player[0].CurrentDmg);
 					if(lsthatcreep.creep[lsthatcreep.player[0].Key].isDead()){
 						lsthatcreep.player[0].Score++;
@@ -109,6 +110,7 @@ public class play extends BasicGameState{
 			}
 			if(lsthatcreep.player[1].CurrentDelay == 0) {
 				if(key == Input.KEY_L) {
+					lsthatcreep.player[1].CurrentDelay = lsthatcreep.player[1].delay;
 					lsthatcreep.creep[lsthatcreep.player[1].Key].hit(lsthatcreep.player[1].CurrentDmg);
 					if(lsthatcreep.creep[lsthatcreep.player[1].Key].isDead()){
 						lsthatcreep.player[1].Score++;
@@ -122,24 +124,24 @@ public class play extends BasicGameState{
 		if(key == Input.KEY_A){
 			lsthatcreep.player[0].Key--;
 			if(lsthatcreep.player[0].Key < 0) {
-				lsthatcreep.player[0].Key = 3;
+				lsthatcreep.player[0].Key = CREEP_COUNT-1;
 			}
 		}
 		if(key == Input.KEY_D){
 			lsthatcreep.player[0].Key++;
-			if(lsthatcreep.player[0].Key > 3) {
+			if(lsthatcreep.player[0].Key > CREEP_COUNT-1) {
 				lsthatcreep.player[0].Key = 0;
 			}
 		}
 		if(key == Input.KEY_K){
 			lsthatcreep.player[1].Key--;
 			if(lsthatcreep.player[1].Key < 0) {
-				lsthatcreep.player[1].Key = 3;
+				lsthatcreep.player[1].Key = CREEP_COUNT-1;
 			}
 		}
 		if(key == Input.KEY_SEMICOLON){
 			lsthatcreep.player[1].Key++;
-			if(lsthatcreep.player[1].Key > 3) {
+			if(lsthatcreep.player[1].Key > CREEP_COUNT-1) {
 				lsthatcreep.player[1].Key = 0;
 			}
 		}
