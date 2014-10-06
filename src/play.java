@@ -78,7 +78,7 @@ public class play extends BasicGameState{
 		} else {
 			lsthatcreep.player[0].CurrentHp += sc;
 		}
-		if(lsthatcreep.player[0].CurrentHp == 0 || lsthatcreep.player[1].CurrentHp == 0){
+		if(lsthatcreep.player[0].CurrentHp <= 0 || lsthatcreep.player[1].CurrentHp <= 0){
 			Sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
 		}
 	}
