@@ -10,7 +10,7 @@ public class Hero {
 	public int delay;
 	public int damage;
 	private String name;
-	private Image pic;
+	public Image pic;
 
 	public void set(int i) throws SlickException{
 		if(i==0) {

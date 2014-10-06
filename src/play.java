@@ -4,6 +4,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 public class play extends BasicGameState{
@@ -12,10 +14,11 @@ public class play extends BasicGameState{
 	private int END;
 	private boolean finish;
 	private int lvl;
+	private StateBasedGame Sbg;
 
 	@Override
 	public int getID() {
-		return 1;
+		return 2;
 	}
 	
 	@Override
@@ -54,8 +57,9 @@ public class play extends BasicGameState{
 	}
 
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
+	public void update(GameContainer arg0, StateBasedGame sbg, int arg2)
 			throws SlickException {
+		Sbg = sbg;
 		if(END>0){
 			CreepUpdate();
 			Delay();
@@ -74,7 +78,9 @@ public class play extends BasicGameState{
 		} else {
 			lsthatcreep.player[0].CurrentHp += sc;
 		}
-		
+		if(lsthatcreep.player[0].CurrentHp == 0 || lsthatcreep.player[1].CurrentHp == 0){
+			Sbg.enterState(3, new FadeOutTransition(), new FadeInTransition());
+		}
 	}
 
 	@Override
@@ -96,11 +102,17 @@ public class play extends BasicGameState{
 			if(lsthatcreep.player[0].CurrentDelay == 0) {
 				if(key == Input.KEY_S) {
 					lsthatcreep.creep[lsthatcreep.player[0].Key].hit(lsthatcreep.player[0].CurrentDmg);
+					if(lsthatcreep.creep[lsthatcreep.player[0].Key].isDead()){
+						lsthatcreep.player[0].Score++;
+					}
 				}
 			}
 			if(lsthatcreep.player[1].CurrentDelay == 0) {
 				if(key == Input.KEY_L) {
 					lsthatcreep.creep[lsthatcreep.player[1].Key].hit(lsthatcreep.player[1].CurrentDmg);
+					if(lsthatcreep.creep[lsthatcreep.player[1].Key].isDead()){
+						lsthatcreep.player[1].Score++;
+					}
 				}
 			}
 		}

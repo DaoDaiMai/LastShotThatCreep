@@ -30,7 +30,9 @@ public class lsthatcreep extends StateBasedGame{
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		this.addState(new pickHero());
+		this.addState(new HowTo());
 		this.addState(new play());
+		this.addState(new EndGame());
 		
 	}
 
