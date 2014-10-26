@@ -1,5 +1,6 @@
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -9,10 +10,11 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 public class pickHero extends BasicGameState{
-
+	private Image image;
 	private StateBasedGame Sbg;
 	@Override
 	public void init(GameContainer arg0, StateBasedGame sbg) throws SlickException {
+		image = new Image("res/pick bg.png");
 		lsthatcreep.hero = new Hero[6];
 		for (int i = 0; i<6; i++) {
 			lsthatcreep.hero[i] = new Hero();
@@ -26,9 +28,10 @@ public class pickHero extends BasicGameState{
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame sbg, Graphics g) throws SlickException {
+		image.draw(0,0);
 		lsthatcreep.hero[lsthatcreep.player[0].count].Render(0,g);
 		lsthatcreep.hero[lsthatcreep.player[1].count].Render(1,g);
-		g.drawString("press SPACE to continue", lsthatcreep.GAME_WIDTH/2-100, lsthatcreep.GAME_HEIGHT-40);
+		//g.drawString("press SPACE to continue", lsthatcreep.GAME_WIDTH/2-100, lsthatcreep.GAME_HEIGHT-40);
 	}
 
 	@Override
@@ -59,13 +62,13 @@ public class pickHero extends BasicGameState{
 			}
 		}
 		if(key == Input.KEY_SPACE){
-			Sbg.enterState(1, new FadeOutTransition(), new FadeInTransition());
+			Sbg.enterState(2, new FadeOutTransition(), new FadeInTransition());
 		}
 				
 	}
 	@Override
 	public int getID() {
-		return 0;
+		return 1;
 	}
 
 }
