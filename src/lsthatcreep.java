@@ -34,6 +34,7 @@ public class lsthatcreep extends StateBasedGame{
 		//this.addState(new HowTo());
 		this.addState(new play());
 		this.addState(new EndGame());
+
 		
 	}
 

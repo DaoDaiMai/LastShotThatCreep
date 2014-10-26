@@ -28,9 +28,9 @@ public class EndGame extends BasicGameState {
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		if(lsthatcreep.player[0].CurrentHp<lsthatcreep.player[1].CurrentHp){
-			g.drawString("p2 win", 400, 300);
+			g.drawString("player 2 win", 400, 300);
 		} else {
-			g.drawString("p1 win", 400, 300);
+			g.drawString("player 1 win", 400, 300);
 		}
 
 	}

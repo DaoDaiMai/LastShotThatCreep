@@ -14,7 +14,7 @@ public class Creep {
 	
 	public Creep(int i) throws SlickException {
 		hp = i;
-		healthbar = new Image("res/healthbar.png");
+		healthbar = new Image("res/hp.png");
 		//sprite = new SpriteSheet("res/ghost sprite sheet.png",175,175);
 		//anim = new Animation(sprite,70);
 	}
